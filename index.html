@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Roboto:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
+
 </head>
 
 <body>
@@ -19,14 +20,21 @@
         <img src="./assets/logo.svg" alt="Logo NLW Copa">
     </header>
 
+    <div class="form__group field">
+        <input type="input" class="form__field" autocomplete="off" placeholder="Name" name="name" id='name' required />
+        <label for="name" class="form__label" >Name</label>
+    </div>
+
     <div class="card" ondblclick="changeCard()">
-        <img src="https://github.com/lkasta.png" alt="Profile Photo">
+        <img src="https://i1.sndcdn.com/artworks-000501300870-udhbt5-t500x500.jpg" alt="Profile Photo">
         <div class="info">
-            <h1>Lkasta</h1>
+            <h1>Seu Nick</h1>
             <p>Student at Rocketseat</p>
         </div>
     </div>
+
     <script src="./script.js"></script>
+    <script src="./api.js"></script>
 </body>
 
 </html>
