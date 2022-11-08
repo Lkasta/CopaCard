@@ -1,4 +1,4 @@
-var i = 0
+var i = 1
 const type = ["dourado", "explorer", "ignite"]
 const textinho = document.querySelector('.form__field') 
 
@@ -6,32 +6,30 @@ function setImageDefault() {
    img.setAttribute('src', `https://i1.sndcdn.com/artworks-000501300870-udhbt5-t500x500.jpg`);
  }
 
-// function setImageByNick() {
-//   img.setAttribute('src', `https://github.com/${nick.value}.png`);
-// }
+function changeCard(event) {
+    if (i > 2) {
+        i = 0
+    }
+    const card = document.querySelector(".card")
+    card.style.backgroundImage = `url(./assets/bg-${type[i]}.svg)`
+    i++
+}
 
-// function changeCard(event) {
-//     if (i > 2) {
-//         i = 0
-//     }
-//     const card = document.querySelector(".card")
-//     card.style.backgroundImage = `url(./assets/bg-${type[i]}.svg)`
-//     i++
-// }
-
-
-var nick = document.querySelector(".form__group > input")
+var nick = document.querySelector(".form__field")
 
 var img = document.querySelector('.card > img')
 
+nick.addEventListener("input", (event) => {
+    if (nick.textContent === 0){
+        setImageDefault();
+    } else {
+        conectionApi();
+    }
+})
+
 img.onerror = function setImagee(){setImageDefault()}; 
 
-
 //GITHUB API
-
-nick.addEventListener("textinho", (event) => {
-    conectionApi();
-})
 
 function conectionApi() {
 
@@ -46,14 +44,17 @@ function conectionApi() {
         .then(data => {
 
             if (data.message !== 'Not Found'){
-                nameUser.textContent = data.name
+
+                if (data.name = "") {
+                    nameUser.textContent = data.login
+                } else {
+                    nameUser.textContent = data.name
+                }
+
                 profileImage.src = data.avatar_url
+
             } else {
                console.log("jonas")
             }
         })
 }
-
-nick.addEventListener("textinho", (event) => {
-    conectionApi();
-})
