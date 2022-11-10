@@ -15,16 +15,20 @@ function changeCard(event) {
     i++
 }
 
-var nick = document.querySelector(".form__field")
+var nickInput = document.querySelector(".form__field")
 
 var img = document.querySelector('.card > img')
 
-nick.addEventListener("input", (event) => {
-    if (nick.textContent === 0){
-        setImageDefault();
-    } else {
-        conectionApi();
+nickInput.addEventListener("keypress", function(tecla) {
+
+    if(tecla.key === 'Enter') {
+        if (nickInput.textContent === 0){
+            setImageDefault();
+        } else {
+            conectionApi();
+        }
     }
+
 })
 
 img.onerror = function setImagee(){setImageDefault()}; 
@@ -58,3 +62,5 @@ function conectionApi() {
             }
         })
 }
+
+
