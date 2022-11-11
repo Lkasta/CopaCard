@@ -1,4 +1,4 @@
-var index = 1
+var i = 1
 const type = ["dourado", "explorer", "ignite"]
 const textinho = document.querySelector('.form__field')
 
@@ -7,12 +7,12 @@ function setImageDefault() {
 }
 
 function changeCard(event) {
-    if (index > 2) {
-        index = 0
+    if (i > 2) {
+        i = 0
     }
     const card = document.querySelector(".card")
     card.style.backgroundImage = `url(./assets/bg-${type[i]}.svg)`
-    index++
+    i++
 }
 
 var nickInput = document.querySelector(".form__field")
