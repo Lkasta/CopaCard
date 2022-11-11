@@ -1,28 +1,28 @@
-var i = 1
+var index = 1
 const type = ["dourado", "explorer", "ignite"]
-const textinho = document.querySelector('.form__field') 
+const textinho = document.querySelector('.form__field')
 
 function setImageDefault() {
-   img.setAttribute('src', `https://i1.sndcdn.com/artworks-000501300870-udhbt5-t500x500.jpg`);
- }
+    img.setAttribute('src', `https://i1.sndcdn.com/artworks-000501300870-udhbt5-t500x500.jpg`);
+}
 
 function changeCard(event) {
-    if (i > 2) {
-        i = 0
+    if (index > 2) {
+        index = 0
     }
     const card = document.querySelector(".card")
     card.style.backgroundImage = `url(./assets/bg-${type[i]}.svg)`
-    i++
+    index++
 }
 
 var nickInput = document.querySelector(".form__field")
 
 var img = document.querySelector('.card > img')
 
-nickInput.addEventListener("keypress", function(tecla) {
+nickInput.addEventListener("keypress", function (tecla) {
 
-    if(tecla.key === 'Enter') {
-        if (nickInput.textContent === 0){
+    if (tecla.key === 'Enter') {
+        if (nickInput.textContent === 0) {
             setImageDefault();
         } else {
             conectionApi();
@@ -31,7 +31,7 @@ nickInput.addEventListener("keypress", function(tecla) {
 
 })
 
-img.onerror = function setImagee(){setImageDefault()}; 
+img.onerror = function setImagee() { setImageDefault() };
 
 //GITHUB API
 
@@ -43,24 +43,25 @@ function conectionApi() {
     let user = textinho.value
     const url = `https://api.github.com/users/${user}`
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
+    fetch(url).then(response => response.json()).then(data => {
 
-            if (data.message !== 'Not Found'){
+        if (data.message !== 'Not Found') {
 
-                if (data.name = "") {
-                    nameUser.textContent = data.login
-                } else {
-                    nameUser.textContent = data.name
-                }
-
-                profileImage.src = data.avatar_url
-
+            if (!data.name) {
+                nameUser.textContent = data.login
             } else {
-               console.log("jonas")
+                nameUser.textContent = data.name
             }
-        })
+
+            if (!profileImage.src) {
+
+            }
+            profileImage.src = data.avatar_url
+
+        } else {
+            console.log("jonas")
+        }
+    })
 }
 
 
