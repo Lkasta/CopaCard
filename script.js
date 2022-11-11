@@ -1,6 +1,8 @@
 var i = 1
 const type = ["dourado", "explorer", "ignite"]
 const textinho = document.querySelector('.form__field')
+const nameUser = document.querySelector(".info > h1")
+const profileImage = document.querySelector('.card > img')
 
 function setImageDefault() {
     img.setAttribute('src', `https://i1.sndcdn.com/artworks-000501300870-udhbt5-t500x500.jpg`);
@@ -31,14 +33,18 @@ nickInput.addEventListener("keypress", function (tecla) {
 
 })
 
+nickInput.addEventListener("input", (event) => {
+    if (!nickInput.textContent) {
+        nameUser.innerText = "Seu Nick"
+        setImageDefault();
+    }
+})
+
 img.onerror = function setImagee() { setImageDefault() };
 
 //GITHUB API
 
 function conectionApi() {
-
-    const nameUser = document.querySelector(".info > h1")
-    const profileImage = document.querySelector('.card > img')
 
     let user = textinho.value
     const url = `https://api.github.com/users/${user}`
